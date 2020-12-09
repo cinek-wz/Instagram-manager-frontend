@@ -45,6 +45,15 @@ export class UserService
         });
     }
 
+    public Register(Login: string, Email: string, Password: string)
+    {
+        this.API.Register(Login, Email, Password).subscribe((response: any) => 
+        {
+            this.ToastService.success(this.Translate.instant('notifications.registered'));
+            this.router.navigate(['/login']);
+        });
+    }
+
     public SignOut()
     {
         this.API.Logout().subscribe((response: any) => 

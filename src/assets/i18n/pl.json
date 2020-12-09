@@ -3,7 +3,8 @@
     {
         "internalerror": "Błąd wewnętrzny",
         "loggedin": "Zalogowano.",
-        "loggedout": "Zostałeś wylogowany."
+        "loggedout": "Zostałeś wylogowany.",
+        "registered": "Zarejestrowano pomyślnie."
     },
     "navigation":
     {
