@@ -1,0 +1,35 @@
+{
+    "notifications":
+    {
+        "internalerror": "Błąd wewnętrzny",
+        "loggedin": "Zalogowano.",
+        "loggedout": "Zostałeś wylogowany."
+    },
+    "navigation":
+    {
+        "home": "Home",
+        "signin": "Zaloguj",
+        "register": "Zarejestruj się",
+        "dashboard": "Panel użytkownika",
+        "settings": "Ustawienia",
+        "logout": "Wyloguj"
+    },
+    "components": {
+        "login":
+        {
+            "title": "Logowanie",
+            "login": "Login",
+            "password": "Hasło",
+            "signinbutton": "Zaloguj"
+        },
+        "register":
+        {
+            "title": "Rejestracja",
+            "login": "Login",
+            "email": "Adres email",
+            "password": "Hasło",
+            "signupbutton": "Zarejstruj się"
+        }
+    }
+
+}

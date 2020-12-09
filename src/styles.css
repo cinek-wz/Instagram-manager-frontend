@@ -1,0 +1,45 @@
+body
+{
+    background-image: url( "./assets/background.jpg");
+}
+
+footer
+{
+    color: white;
+}
+
+#wrapper
+{
+    margin: 0 auto;
+}
+
+#content
+{
+    background-color: white;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.loadingfull
+{
+    display: flex; 
+    height: 100vh; 
+    width: 100%; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.loading
+{
+    display: flex; 
+    height: 100%; 
+    width: 100%; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.logocolor
+{
+    color: white;
+}
