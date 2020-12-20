@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center">
+            <p class="h4 mb-4 text-center">{{ 'components.settings.title' | translate }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">{{ 'components.settings.email' | translate }}</span>
+                <input [(ngModel)]="Email" type="text" class="form-control" placeholder="{{ this.UserService.Email }}">
+            </div>
+            <button (click)="this.ModifyProfile()" class="btn btn-info btn-block my-4" type="submit">{{ 'components.settings.savebutton' | translate }}</button>
+
+        </div>
+    </div>
+</div>

@@ -16,6 +16,7 @@ export class UserService
 
     //User details
     public Login: string;
+    public Email: string;
 
     constructor(private ToastService: ToastrService, private router: Router, private API: APIService, private Translate: TranslateService) 
     { 
@@ -27,6 +28,7 @@ export class UserService
         this.API.GetProfile().subscribe((response: any) => 
         {
             this.Login = response.data.login;
+            this.Email = response.data.email;
             this.isLoggedIn.next(true);
         }, (error: HttpErrorResponse) => 
         {
@@ -42,6 +44,19 @@ export class UserService
             this.Login = response.data.login;
             this.isLoggedIn.next(true);
             this.router.navigate(['/dashboard']);
+        });
+    }
+
+    public ModifyProfile(Email: string)
+    {
+        return this.API.ModifyProfile(Email).subscribe((response: any) => 
+        {
+            this.Email = Email;
+            this.ToastService.success(this.Translate.instant('notifications.settingssaved'));
+        }, (error: HttpErrorResponse) => 
+        {
+            this.ToastService.error(this.Translate.instant('notifications.internalerror'));
+            return false;
         });
     }
 

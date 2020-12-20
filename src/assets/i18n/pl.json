@@ -4,7 +4,8 @@
         "internalerror": "Błąd wewnętrzny",
         "loggedin": "Zalogowano.",
         "loggedout": "Zostałeś wylogowany.",
-        "registered": "Zarejestrowano pomyślnie."
+        "registered": "Zarejestrowano pomyślnie.",
+        "settingssaved": "Zapisano ustawienia."
     },
     "navigation":
     {
@@ -30,6 +31,17 @@
             "email": "Adres email",
             "password": "Hasło",
             "signupbutton": "Zarejstruj się"
+        },
+        "settings":
+        {
+            "title": "Ustawienia użytkownika",
+            "email": "Adres email",
+            "savebutton": "Zapisz"
+        },
+        "dashboard":
+        {
+            "title": "Panel użytkownika",
+            "linkedaccounts": "Powiązane konta Instagram"
         }
     }
 

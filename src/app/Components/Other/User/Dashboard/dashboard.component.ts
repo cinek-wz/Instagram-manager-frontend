@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { APIService } from 'src/app/Services/api.service';
+import { DataService } from 'src/app/Services/data.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import { APIService } from 'src/app/Services/api.service';
 })
 export class DashboardComponent implements OnInit 
 {
-    constructor(private API: APIService) { }
+    constructor(private API: APIService, private DataService: DataService) { }
 
     ngOnInit() { }
 }

@@ -28,4 +28,9 @@ export class APIService
     {
         return this.http.get("/api/user/profile");
     }
+
+    public ModifyProfile(Email: string): Observable<Object>
+    {
+        return this.http.post("/api/user/profile", { email: Email });
+    }
 }
