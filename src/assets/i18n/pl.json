@@ -54,6 +54,10 @@
             "currentfollowers": "Obecna liczba obserwujących",
             "statusaccount": "Status konta",
             "deleteaccount": "Usuń konto"
+        },
+        "account":
+        {
+            "title": "Instagram"
         }
     }
 
