@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { APIService } from './api.service';
+import { InstagramService } from 'src/app/Services/instagram.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,17 +19,18 @@ export class UserService
     public Login: string;
     public Email: string;
 
-    constructor(private ToastService: ToastrService, private router: Router, private API: APIService, private Translate: TranslateService) 
+    constructor(private ToastService: ToastrService, private router: Router, public InstagramService: InstagramService, private API: APIService, private Translate: TranslateService) 
     { 
         this.isLoggedIn = new BehaviorSubject(undefined);
     }
 
     public GetUser()
     {
-        this.API.GetProfile().subscribe((response: any) => 
+        this.API.GetProfile().subscribe(async (response: any) => 
         {
             this.Login = response.data.login;
             this.Email = response.data.email;
+            await this.InstagramService.GetAccounts();
             this.isLoggedIn.next(true);
         }, (error: HttpErrorResponse) => 
         {
@@ -38,10 +40,12 @@ export class UserService
 
     public SignIn(Login: string, Password: string)
     {
-        this.API.Login(Login, Password).subscribe((response: any) => 
+        this.API.Login(Login, Password).subscribe(async (response: any) => 
         {
             this.ToastService.success(this.Translate.instant('notifications.loggedin'));
             this.Login = response.data.login;
+            this.Email = response.data.email;
+            await this.InstagramService.GetAccounts();
             this.isLoggedIn.next(true);
             this.router.navigate(['/dashboard']);
         });
