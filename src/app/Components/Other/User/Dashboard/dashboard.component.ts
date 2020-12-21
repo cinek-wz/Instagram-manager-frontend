@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit
     {
         this.API.ChangeInstagramAccountStatus(ID, Status).subscribe((response: any) => 
         {
-            this.ToastService.success(this.Translate.instant('notifications.accountdeleted'));
+            this.ToastService.success(this.Translate.instant('notifications.accountstatuschanged'));
             this.GetAccounts();
         }, (error: HttpErrorResponse) => 
         {
