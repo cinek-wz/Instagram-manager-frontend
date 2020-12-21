@@ -33,4 +33,19 @@ export class APIService
     {
         return this.http.post("/api/user/profile", { email: Email });
     }
+
+    public GetInstagramAccounts(): Observable<Object>
+    {
+        return this.http.post("/api/instagram/accounts", {});
+    }
+
+    public DeleteInstagramAccount(ID: number): Observable<Object>
+    {
+        return this.http.post("/api/instagram/removeaccount", { accountid: ID });
+    }
+
+    public ChangeInstagramAccountStatus(ID: number, Status: boolean): Observable<Object>
+    {
+        return this.http.post("/api/instagram/accountstatus", { accountid: ID, status: Status });
+    }
 }

@@ -8,20 +8,47 @@
     <div class="row">
         <div class="col-md-6 offset-md-3 text-center">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item nav-link">{{ 'components.dashboard.linkedaccounts' | translate }}
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                          <a class="nav-link">+</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item nav-link">{{ 'components.dashboard.linkedaccounts' | translate }}
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link">+</a>
+                    </li>
+                </ul>
             </nav>
-            <!-- LISTA KONT -->
-            
+            <!-- LISTA KONT  -->
+            <table *ngIf="this.DataService.Accounts != null; else loading" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{{ 'components.dashboard.accountdetails' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.login' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.password' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.monthlygain' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.dailygain' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.currentfollowers' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.statusaccount' | translate }}</th>
+                        <th scope="col">{{ 'components.dashboard.deleteaccount' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let account of this.DataService.Accounts; let i = index">
+                        <th scope="row">{{ i }}</th>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-dark">{{ 'components.dashboard.accountdetailsenter' | translate }}</button>
+                        </td>
+                        <td>{{ account.login }}</td>
+                        <td>{{ account.password }}</td>
+                        <td>{{ (account.monthfollowers-account.currentfollowers) }}</td>
+                        <td>{{ (account.dayfollowers-account.currentfollowers) }}</td>
+                        <td>{{ account.currentfollowers }}</td>
+                        <td><i (click)="this.ChangeAccountStatus(account.id, !(account.enabled))" [className]="account.enabled ? 'fas fa-toggle-on text-success' : 'fas fa-toggle-off text-secondary'"></i></td>
+                        <td><i (click)="this.DeleteAccount(account.id)" class="text-danger fas fa-minus-circle"></i></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -5,7 +5,9 @@
         "loggedin": "Zalogowano.",
         "loggedout": "Zostałeś wylogowany.",
         "registered": "Zarejestrowano pomyślnie.",
-        "settingssaved": "Zapisano ustawienia."
+        "settingssaved": "Zapisano ustawienia.",
+        "accountdeleted": "Konto zostało usunięte",
+        "accountstatuschanged": "Status konta został zmieniony"
     },
     "navigation":
     {
@@ -41,7 +43,17 @@
         "dashboard":
         {
             "title": "Panel użytkownika",
-            "linkedaccounts": "Powiązane konta Instagram"
+            "linkedaccounts": "Powiązane konta Instagram",
+            "addaccount": "Dodaj nowe konto",
+            "accountdetails": "Szczegóły konta",
+            "accountdetailsenter": "Otwórz",
+            "login": "Login",
+            "password": "Hasło",
+            "monthlygain": "Miesięcznie nowych obserwujących",
+            "dailygain": "Dziennie nowych obserwujących",
+            "currentfollowers": "Obecna liczba obserwujących",
+            "statusaccount": "Status konta",
+            "deleteaccount": "Usuń konto"
         }
     }
 
