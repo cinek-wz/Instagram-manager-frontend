@@ -36,7 +36,7 @@
                         <tr *ngFor="let account of this.DataService.Accounts; let i = index">
                             <th scope="row">{{ i }}</th>
                             <td>
-                                <button routerLink="/account/{{i}}" type="button" class="btn btn-sm btn-dark">{{ 'components.dashboard.accountdetailsenter' | translate }}</button>
+                                <button routerLink="/account/{{i}}" type="button" class="btn btn-sm btn-light">{{ 'components.dashboard.accountdetailsenter' | translate }}</button>
                             </td>
                             <td>{{ account.login }}</td>
                             <td>{{ account.password }}</td>
