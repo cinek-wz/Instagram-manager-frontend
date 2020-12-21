@@ -44,3 +44,14 @@ footer
 {
     color: white;
 }
+
+.backcolor
+{
+    color: white;
+}
+
+.backcolor :hover
+{
+    color: orange;
+    transition: all .2s ease-in;
+}

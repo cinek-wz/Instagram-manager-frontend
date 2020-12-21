@@ -10,7 +10,9 @@ import { SettingsComponent } from './Components/Other/User/Settings/settings.com
 
 import { AuthGuard } from './Guards/auth.guard';
 import { LoginGuard } from './Guards/login.guard';
-import { AccountComponent } from './Components/Other/User/Account/account.component';
+import { AccountComponent } from './Components/Other/User/AccountRouter/account.component';
+import { InstagramPanelComponent } from './Components/Other/User/Account/Instagram-panel/instagram-panel.component';
+import { TagsFinderComponent } from './Components/Other/User/Account/Tags-finder/tags-finder.component';
 
 const routes: Routes = 
 [
@@ -49,7 +51,12 @@ const routes: Routes =
         path: 'account/:id',
         component: AccountComponent,
         canActivate: [ AuthGuard ],
-        data: { title: "components.account.title" }
+        data: { title: "components.account.title" },
+        children: 
+        [
+            { path: '', component: InstagramPanelComponent },
+            { path: 'tags', component: TagsFinderComponent },
+        ]
     },
     // Other
     { 

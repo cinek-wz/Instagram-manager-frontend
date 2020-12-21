@@ -57,7 +57,14 @@
         },
         "account":
         {
-            "title": "Instagram"
+            "title": "Instagram",
+            "menu": 
+            {
+                "instagrampanel": "Panel",
+                "tagsfinder": "Wyszukiwarka tagów",
+                "postscheduler": "Planowanie wpisów",
+                "insights": "Dane o obserwujących"
+            }
         }
     }
 

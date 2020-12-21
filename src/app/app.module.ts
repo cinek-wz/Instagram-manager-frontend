@@ -22,8 +22,11 @@ import { HomeComponent } from './Components/Other/Guest/Home/home.component';
 
 import { DashboardComponent } from './Components/Other/User/Dashboard/dashboard.component';
 import { SettingsComponent } from './Components/Other/User/Settings/settings.component';
-import { AccountComponent } from './Components/Other/User/Account/account.component';
+import { AccountComponent } from './Components/Other/User/AccountRouter/account.component';
 import { HeaderComponent } from './Components/Helper/Header/header.component';
+import { InstagramPanelComponent } from './Components/Other/User/Account/Instagram-panel/instagram-panel.component';
+import { TagsFinderComponent } from './Components/Other/User/Account/Tags-finder/tags-finder.component';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,14 +43,16 @@ export function HttpLoaderFactory(http: HttpClient) {
         HomeComponent,
         SettingsComponent,
         AccountComponent,
-        HeaderComponent
+        HeaderComponent,
+        InstagramPanelComponent,
+        TagsFinderComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
-        ToastrModule.forRoot({ maxOpened: 5, autoDismiss: true, positionClass: 'toast-bottom-right', progressBar: true, closeButton: true, tapToDismiss: false }),
+        ToastrModule.forRoot({ maxOpened: 3, autoDismiss: true, positionClass: 'toast-bottom-right', progressBar: true, closeButton: true, tapToDismiss: false }),
         TranslateModule.forRoot({
             defaultLanguage: 'pl',
             loader: {

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataService
 {
-    public Accounts: Array<Object> = null;
+    public Accounts: Array<any> = null;
 
     constructor() { }
 
