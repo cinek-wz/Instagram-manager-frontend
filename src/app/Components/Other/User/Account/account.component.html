@@ -1,12 +1,14 @@
+<app-header></app-header>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 offset-md-4 text-center">
-            <p class="h4 mb-4 text-center">{{ 'components.account.title' | translate }}</p>
+        <div class="col-12">
+            Index: {{ this.AccountIndex }}
         </div>
     </div>
-    
-
-
-
-
 </div>
+
+<ng-template #loading>
+    <div class="loading">        
+        <div class="spinner-border text-warning" role="status"></div>
+    </div>
+</ng-template>

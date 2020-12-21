@@ -1,10 +1,5 @@
+<app-header></app-header>
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4 text-center">
-            <p class="h4 mb-4 text-center">{{ 'components.dashboard.title' | translate }}</p>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,7 +33,7 @@
                         <tr *ngFor="let account of this.DataService.Accounts; let i = index">
                             <th scope="row">{{ i }}</th>
                             <td>
-                                <button type="button" class="btn btn-sm btn-dark">{{ 'components.dashboard.accountdetailsenter' | translate }}</button>
+                                <button routerLink="/account/{{i}}" type="button" class="btn btn-sm btn-dark">{{ 'components.dashboard.accountdetailsenter' | translate }}</button>
                             </td>
                             <td>{{ account.login }}</td>
                             <td>{{ account.password }}</td>

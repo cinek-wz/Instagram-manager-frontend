@@ -23,6 +23,7 @@ import { HomeComponent } from './Components/Other/Guest/Home/home.component';
 import { DashboardComponent } from './Components/Other/User/Dashboard/dashboard.component';
 import { SettingsComponent } from './Components/Other/User/Settings/settings.component';
 import { AccountComponent } from './Components/Other/User/Account/account.component';
+import { HeaderComponent } from './Components/Helper/Header/header.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         RegisterComponent,
         HomeComponent,
         SettingsComponent,
-        AccountComponent
+        AccountComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,

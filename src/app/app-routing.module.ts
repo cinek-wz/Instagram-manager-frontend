@@ -10,6 +10,7 @@ import { SettingsComponent } from './Components/Other/User/Settings/settings.com
 
 import { AuthGuard } from './Guards/auth.guard';
 import { LoginGuard } from './Guards/login.guard';
+import { AccountComponent } from './Components/Other/User/Account/account.component';
 
 const routes: Routes = 
 [
@@ -22,23 +23,33 @@ const routes: Routes =
     { 
         path: 'login', 
         component: LoginComponent,
-        canActivate: [ LoginGuard ]
+        canActivate: [ LoginGuard ],
+        data: { title: "components.login.title" }
     },
     { 
         path: 'register', 
         component: RegisterComponent,
-        canActivate: [ LoginGuard ]
+        canActivate: [ LoginGuard ],
+        data: { title: "components.register.title" }
     },
     // Authenticated users
     { 
         path: 'dashboard', 
         component: DashboardComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard ],
+        data: { title: "components.dashboard.title" }
     },
     { 
         path: 'settings', 
         component: SettingsComponent,
-        canActivate: [ AuthGuard ]
+        canActivate: [ AuthGuard ],
+        data: { title: "components.settings.title" }
+    },
+    {
+        path: 'account/:id',
+        component: AccountComponent,
+        canActivate: [ AuthGuard ],
+        data: { title: "components.account.title" }
     },
     // Other
     { 
