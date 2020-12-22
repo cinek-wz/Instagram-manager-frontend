@@ -1,1 +1,19 @@
-<p>tags-finder works!</p>
+<div class="container-fluid">
+    <!-- Followers data -->
+    <div class="row mt-4">
+        <div class="col-5 offset-3">
+            <div class="form-floating">
+                <input type="text" [(ngModel)]="Tag" id="floatingInput" class="form-control">
+                <label for="floatingInput">Tag</label>
+            </div>
+        </div>
+        <div class="col-1">
+            <button (click)="this.GetSimilarTags()" [disabled]="APIRequestTime" type="button" class="btn btn-dark btn-lg">Search</button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <p>
+            <span *ngFor="let tag of this.Tags" class="badge bg-secondary mx-1">{{ tag.tag }}</span>
+        </p>
+    </div>
+</div>

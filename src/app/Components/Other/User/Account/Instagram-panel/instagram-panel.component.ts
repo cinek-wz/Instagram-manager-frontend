@@ -21,7 +21,7 @@ export class InstagramPanelComponent implements OnInit
 
     async ngOnInit(): Promise<void> 
     {
-        this.Account = this.DataService.Accounts[this.route.snapshot.paramMap.get('id')];
+        this.Account = this.DataService.Accounts[this.route.snapshot.parent.paramMap.get('id')];
 
         this.AccountCurrentFollowers = this.Account.currentfollowers;
 

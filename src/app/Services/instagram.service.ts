@@ -57,7 +57,7 @@ export class InstagramService
 
     async GetTopPhotos(ID: number)
     {
-        return new Promise<void>(async (resolve,reject) => 
+        return new Promise<Object>(async (resolve,reject) => 
         {
             let Index = this.DataService.Accounts.findIndex((x) => x.id == ID);
 
@@ -82,6 +82,18 @@ export class InstagramService
 
     async GetSimilarTags(ID: number, Tag: string)
     {
+        console.log("TEST");
 
+        return new Promise<Object>(async (resolve,reject) => 
+        {
+            this.API.GetSimilarTags(ID, Tag).subscribe((response: any) => 
+            {
+                return resolve(response.data);
+            }, (error: HttpErrorResponse) => 
+            {
+                this.ToastService.error(this.Translate.instant('notifications.internalerror'));
+                return reject();
+            });
+        });
     }
 }
