@@ -5,8 +5,30 @@
         </h3>
     </div>
     <div class="row mt-4">
-        <div class="col-6 offset-3">
-
+        <div  class="col-12">
+            <ng-container *ngIf="this.BusinessAccount == true">
+                <div style="display: block">
+                    <canvas baseChart
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                    </canvas>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="this.BusinessAccount == false">
+                <div class="text-center">        
+                    {{ 'components.account.components.insights.notbusiness' | translate }}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="this.BusinessAccount == null; then loading"></ng-container>
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="loading">        
+        <div class="spinner-border text-warning" role="status"></div>
+    </div>
+</ng-template>

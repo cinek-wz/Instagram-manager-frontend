@@ -60,4 +60,9 @@ export class APIService
     {
         return this.http.post("/api/instagram/similartags", { accountid: ID, tag: Tag } );
     }
+
+    public GetInsights(ID: number): Observable<Object>
+    {
+        return this.http.post("/api/instagram/insights", { accountid: ID } );
+    }
 }

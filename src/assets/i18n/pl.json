@@ -85,7 +85,8 @@
                 },
                 "insights":
                 {
-                    "title": "Dane o obserwujących"
+                    "title": "Dane o obserwujących",
+                    "notbusiness": "Profil musi być biznesowy aby uzyskać dane."
                 }
             }
         }

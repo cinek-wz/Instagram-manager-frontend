@@ -82,8 +82,6 @@ export class InstagramService
 
     async GetSimilarTags(ID: number, Tag: string)
     {
-        console.log("TEST");
-
         return new Promise<Object>(async (resolve,reject) => 
         {
             this.API.GetSimilarTags(ID, Tag).subscribe((response: any) => 
@@ -93,6 +91,20 @@ export class InstagramService
             {
                 this.ToastService.error(this.Translate.instant('notifications.internalerror'));
                 return reject();
+            });
+        });
+    }
+
+    async GetInsights(ID: number)
+    {
+        return new Promise<Object>(async (resolve,reject) => 
+        {
+            this.API.GetInsights(ID).subscribe((response: any) => 
+            {
+                return resolve(response.data);
+            }, (error: HttpErrorResponse) => 
+            {
+                return reject(error);
             });
         });
     }

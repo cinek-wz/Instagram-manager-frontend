@@ -25,8 +25,8 @@ export class InstagramPanelComponent implements OnInit
 
         this.AccountCurrentFollowers = this.Account.currentfollowers;
 
-        this.AccountMonthlyGain = this.Account.monthfollowers-this.AccountCurrentFollowers;
-        this.AccountDailyGain = this.Account.dayfollowers-this.AccountCurrentFollowers;
+        this.AccountMonthlyGain = this.AccountCurrentFollowers-this.Account.monthfollowers;
+        this.AccountDailyGain = this.AccountCurrentFollowers-this.Account.dayfollowers;
         
         await this.InstagramService.GetTopPhotos(this.Account.id);
     }

@@ -40,8 +40,8 @@
                             </td>
                             <td>{{ account.login }}</td>
                             <td>{{ account.password }}</td>
-                            <td>{{ (account.monthfollowers-account.currentfollowers) }}</td>
-                            <td>{{ (account.dayfollowers-account.currentfollowers) }}</td>
+                            <td>{{ (account.currentfollowers-account.monthfollowers) }}</td>
+                            <td>{{ (account.currentfollowers-account.dayfollowers) }}</td>
                             <td>{{ account.currentfollowers }}</td>
                             <td><i (click)="this.InstagramService.ChangeAccountStatus(account.id, !(account.enabled))" [className]="account.enabled ? 'fas fa-toggle-on text-success' : 'fas fa-toggle-off text-secondary'"></i></td>
                             <td><i (click)="this.InstagramService.DeleteAccount(account.id)" class="text-danger fas fa-minus-circle"></i></td>
