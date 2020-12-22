@@ -61,8 +61,6 @@ export class InstagramService
         {
             let Index = this.DataService.Accounts.findIndex((x) => x.id == ID);
 
-            console.log(Index);
-
             if(this.DataService.Accounts[Index].topphotos == null)
             {
                 this.API.GetTopPhotos(ID).subscribe((response: any) => 
@@ -80,5 +78,10 @@ export class InstagramService
                 return resolve(this.DataService.Accounts[Index].topphotos);
             }
         });
+    }
+
+    async GetSimilarTags(ID: number, Tag: string)
+    {
+
     }
 }

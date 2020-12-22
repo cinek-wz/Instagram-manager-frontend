@@ -55,4 +55,9 @@ export class APIService
     {
         return this.http.post("/api/instagram/topphotos", { accountid: ID } );
     }
+
+    public GetSimilarTags(ID: number, Tag: string): Observable<Object>
+    {
+        return this.http.post("/api/instagram/similartags", { accountid: ID, tag: Tag } );
+    }
 }
