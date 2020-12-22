@@ -69,6 +69,7 @@
             {
                 "panel":
                 {
+                    "title": "Panel użytkownika",
                     "monthlygain": "Miesięczny przyrost obserwujących",
                     "dailygain": "Dzienny przyrost obserwujących",
                     "currentfollowers": "Obecna liczba obserwujących",
@@ -79,7 +80,12 @@
                 },
                 "tagfinder":
                 {
+                    "title": "Wyszukiwarka tagów",
                     "search": "Wyszukaj"
+                },
+                "insights":
+                {
+                    "title": "Dane o obserwujących"
                 }
             }
         }

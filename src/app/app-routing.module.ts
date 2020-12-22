@@ -13,6 +13,7 @@ import { LoginGuard } from './Guards/login.guard';
 import { AccountComponent } from './Components/Other/User/AccountRouter/account.component';
 import { InstagramPanelComponent } from './Components/Other/User/Account/Instagram-panel/instagram-panel.component';
 import { TagsFinderComponent } from './Components/Other/User/Account/Tags-finder/tags-finder.component';
+import { InsightsComponent } from './Components/Other/User/Account/Insights/insights.component';
 
 const routes: Routes = 
 [
@@ -56,6 +57,7 @@ const routes: Routes =
         [
             { path: '', component: InstagramPanelComponent },
             { path: 'tags', component: TagsFinderComponent },
+            { path: 'insights', component: InsightsComponent },
         ]
     },
     // Other

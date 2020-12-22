@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
 
 
 import { AppComponent } from './Components/Main/App/app.component';
@@ -26,6 +27,7 @@ import { AccountComponent } from './Components/Other/User/AccountRouter/account.
 import { HeaderComponent } from './Components/Helper/Header/header.component';
 import { InstagramPanelComponent } from './Components/Other/User/Account/Instagram-panel/instagram-panel.component';
 import { TagsFinderComponent } from './Components/Other/User/Account/Tags-finder/tags-finder.component';
+import { InsightsComponent } from './Components/Other/User/Account/Insights/insights.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,13 +47,15 @@ export function HttpLoaderFactory(http: HttpClient) {
         AccountComponent,
         HeaderComponent,
         InstagramPanelComponent,
-        TagsFinderComponent
+        TagsFinderComponent,
+        InsightsComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
+        ChartsModule,
         ToastrModule.forRoot({ maxOpened: 3, autoDismiss: true, positionClass: 'toast-bottom-right', progressBar: true, closeButton: true, tapToDismiss: false }),
         TranslateModule.forRoot({
             defaultLanguage: 'pl',
