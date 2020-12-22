@@ -4,7 +4,7 @@
         <div class="col-4">
             <div class="px-2 border bg-light text-center">
                 <p>
-                    Miesięczny przyrost obserwujących
+                    {{ 'components.account.components.panel.monthlygain' | translate }}
                 </p>
                 <p class="fw-bold">
                     {{ this.AccountMonthlyGain }}
@@ -14,7 +14,7 @@
         <div class="col-4">
             <div class="px-2 border bg-light text-center">
                 <p>
-                    Dzienny przyrost obserwujących
+                    {{ 'components.account.components.panel.dailygain' | translate }}
                 </p>
                 <p class="fw-bold">
                     {{ this.AccountDailyGain }}
@@ -24,7 +24,7 @@
         <div class="col-4">
             <div class="px-2 border bg-light text-center">
                 <p>
-                    Obecna liczba obserwujących
+                    {{ 'components.account.components.panel.currentfollowers' | translate }}
                 </p>
                 <p class="fw-bold">
                     {{ this.AccountCurrentFollowers }}
@@ -36,7 +36,7 @@
     <ng-container *ngIf="this.Account.topphotos != null && this.Account.topphotos.length > 0">
         <div class="row mt-4">
             <h3 class="text-center">
-                Top photos
+                {{ 'components.account.components.panel.topphotos' | translate }}
             </h3>
         </div>
         <div class="row mt-4">
@@ -47,12 +47,12 @@
                         <h5 class="card-title text-center">#{{i+1}}</h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Comments: {{ photo.comments }}</li>
-                        <li class="list-group-item">Likes: {{ photo.likes }}</li>
-                        <li class="list-group-item">Posted at: {{ ConvertToDate(photo.time) }}</li>
+                        <li class="list-group-item"><b>{{ 'components.account.components.panel.comments' | translate }}</b>: {{ photo.comments }}</li>
+                        <li class="list-group-item"><b>{{ 'components.account.components.panel.likes' | translate }}</b>: {{ photo.likes }}</li>
+                        <li class="list-group-item"><b>{{ 'components.account.components.panel.postedat' | translate }}</b>: {{ ConvertToDate(photo.time) }}</li>
                     </ul>
                     <div class="card-body">
-                        <p>{{ photo.description }}</p>
+                        <p class="text-wrap">{{ photo.description }}</p>
                     </div>
                 </div>
             </div>
