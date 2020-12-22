@@ -40,9 +40,12 @@
             </h3>
         </div>
         <div class="row mt-4">
-            <div *ngFor="let photo of this.Account.topphotos" class="col-4" style="width: 18rem;">
+            <div *ngFor="let photo of this.Account.topphotos; let i = index" class="col-4" style="width: 18rem;">
                 <div class="card" style="width: 18rem;">
                     <img src="{{ photo.photo }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">#{{i+1}}</h5>
+                    </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Comments: {{ photo.comments }}</li>
                         <li class="list-group-item">Likes: {{ photo.likes }}</li>
