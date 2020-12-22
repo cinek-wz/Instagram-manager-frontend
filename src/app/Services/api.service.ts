@@ -48,4 +48,11 @@ export class APIService
     {
         return this.http.post("/api/instagram/accountstatus", { accountid: ID, status: Status });
     }
+
+    // Account functions
+
+    public GetTopPhotos(ID: number): Observable<Object>
+    {
+        return this.http.post("/api/instagram/topphotos", { accountid: ID } );
+    }
 }

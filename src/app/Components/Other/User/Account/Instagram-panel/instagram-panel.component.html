@@ -1,1 +1,58 @@
-<p>instagram-panel works!</p>
+<div class="container-fluid">
+    <!-- Followers data -->
+    <div class="row mt-4">
+        <div class="col-4">
+            <div class="px-2 border bg-light text-center">
+                <p>
+                    Miesięczny przyrost obserwujących
+                </p>
+                <p class="fw-bold">
+                    {{ this.AccountMonthlyGain }}
+                </p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="px-2 border bg-light text-center">
+                <p>
+                    Dzienny przyrost obserwujących
+                </p>
+                <p class="fw-bold">
+                    {{ this.AccountDailyGain }}
+                </p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="px-2 border bg-light text-center">
+                <p>
+                    Obecna liczba obserwujących
+                </p>
+                <p class="fw-bold">
+                    {{ this.AccountCurrentFollowers }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Top photos -->
+    <ng-container *ngIf="this.Account.topphotos != null && this.Account.topphotos.length > 0">
+        <div class="row mt-4">
+            <h3 class="text-center">
+                Top photos
+            </h3>
+        </div>
+        <div class="row mt-4">
+            <div *ngFor="let photo of this.Account.topphotos" class="col-4" style="width: 18rem;">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ photo.photo }}" class="card-img-top">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Comments: {{ photo.comments }}</li>
+                        <li class="list-group-item">Likes: {{ photo.likes }}</li>
+                        <li class="list-group-item">Posted at: {{ ConvertToDate(photo.time) }}</li>
+                    </ul>
+                    <div class="card-body">
+                        <p>{{ photo.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

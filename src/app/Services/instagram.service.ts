@@ -54,4 +54,31 @@ export class InstagramService
             this.ToastService.error(this.Translate.instant('notifications.internalerror'));
         });
     }
+
+    async GetTopPhotos(ID: number)
+    {
+        return new Promise<void>(async (resolve,reject) => 
+        {
+            let Index = this.DataService.Accounts.findIndex((x) => x.id == ID);
+
+            console.log(Index);
+
+            if(this.DataService.Accounts[Index].topphotos == null)
+            {
+                this.API.GetTopPhotos(ID).subscribe((response: any) => 
+                {
+                    let TopPhotos = this.DataService.Accounts[Index].topphotos = response.data;
+                    return resolve(TopPhotos);
+                }, (error: HttpErrorResponse) => 
+                {
+                    this.ToastService.error(this.Translate.instant('notifications.internalerror'));
+                    return reject();
+                });
+            }
+            else
+            {
+                return resolve(this.DataService.Accounts[Index].topphotos);
+            }
+        });
+    }
 }
