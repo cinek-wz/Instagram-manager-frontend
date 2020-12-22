@@ -64,6 +64,19 @@
                 "tagsfinder": "Wyszukiwarka tagów",
                 "postscheduler": "Planowanie wpisów",
                 "insights": "Dane o obserwujących"
+            },
+            "components":
+            {
+                "panel":
+                {
+                    "monthlygain": "Miesięczny przyrost obserwujących",
+                    "dailygain": "Dzienny przyrost obserwujących",
+                    "currentfollowers": "Obecna liczba obserwujących",
+                    "topphotos": "Najlepsze zdjęcia",
+                    "comments": "Komentarze",
+                    "likes": "Polubienia",
+                    "postedat": "Zapostowano"
+                }
             }
         }
     }
