@@ -36,17 +36,17 @@ export class APIService
 
     public GetInstagramAccounts(): Observable<Object>
     {
-        return this.http.post("/api/instagram/accounts", {});
+        return this.http.get("/api/instagram/accounts");
     }
 
     public DeleteInstagramAccount(ID: number): Observable<Object>
     {
-        return this.http.post("/api/instagram/removeaccount", { accountid: ID });
+        return this.http.request('delete', "/api/instagram/account", {body: { accountid: ID }});
     }
 
     public ChangeInstagramAccountStatus(ID: number, Status: boolean): Observable<Object>
     {
-        return this.http.post("/api/instagram/accountstatus", { accountid: ID, status: Status });
+        return this.http.put("/api/instagram/account", { accountid: ID, status: Status });
     }
 
     // Account functions
@@ -64,5 +64,15 @@ export class APIService
     public GetInsights(ID: number): Observable<Object>
     {
         return this.http.post("/api/instagram/insights", { accountid: ID } );
+    }
+
+    public GetSchedule(ID: number)
+    {
+        return this.http.request('get', "/api/instagram/photoscheduler", { body: { accountid: ID }});
+    }
+
+    public AddSchedule(ID: number, Description: string, Date: string, Photo: any)
+    {
+        return this.http.post("/api/instagram/photoscheduler", { accountid: ID, description: Description, date: Date, uploaded_photo: Photo });
     }
 }
