@@ -61,9 +61,11 @@ export class APIService
         return this.http.post('/api/instagram/similartags', { accountid: ID, tag: Tag } );
     }
 
-    public GetInsights(ID: number): Observable<Object>
+    public GetInsights(AccountID: number): Observable<Object>
     {
-        return this.http.post('/api/instagram/insights', { accountid: ID } );
+        const params = new HttpParams().append('accountid', AccountID.toString());
+        
+        return this.http.get('/api/instagram/insights', { params: params } );
     }
 
     public GetSchedule(ID: number)
