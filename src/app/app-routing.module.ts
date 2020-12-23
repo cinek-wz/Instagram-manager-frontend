@@ -14,6 +14,7 @@ import { AccountComponent } from './Components/Other/User/AccountRouter/account.
 import { InstagramPanelComponent } from './Components/Other/User/Account/Instagram-panel/instagram-panel.component';
 import { TagsFinderComponent } from './Components/Other/User/Account/Tags-finder/tags-finder.component';
 import { InsightsComponent } from './Components/Other/User/Account/Insights/insights.component';
+import { SchedulerComponent } from './Components/Other/User/Account/Scheduler/scheduler.component';
 
 const routes: Routes = 
 [
@@ -58,6 +59,7 @@ const routes: Routes =
             { path: '', component: InstagramPanelComponent },
             { path: 'tags', component: TagsFinderComponent },
             { path: 'insights', component: InsightsComponent },
+            { path: 'scheduler', component: SchedulerComponent },
         ]
     },
     // Other
