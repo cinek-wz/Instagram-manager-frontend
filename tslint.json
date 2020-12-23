@@ -11,16 +11,14 @@
     "arrow-parens": false,
     "arrow-return-shorthand": true,
     "curly": true,
+    "ban-types": false,
+    "no-trailing-whitespace": false,
     "deprecation": {
       "severity": "warning"
     },
     "eofline": true,
     "import-spacing": true,
-    "indent": [
-      true,
-      "spaces",
-      4
-    ],
+    "indent": [ true, "spaces", 4 ],
     "component-class-suffix": true,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
@@ -43,7 +41,7 @@
     "interface-name": false,
     "max-classes-per-file": false,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,

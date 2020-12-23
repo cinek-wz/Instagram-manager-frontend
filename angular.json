@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gamesrent": {
+    "instpect": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -43,7 +43,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gamesrent",
+            "outputPath": "dist/instpect",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -96,11 +96,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gamesrent:build"
+            "browserTarget": "instpect:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "gamesrent:build:production"
+              "browserTarget": "instpect:build:production"
             }
           }
         }

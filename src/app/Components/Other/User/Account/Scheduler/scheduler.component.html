@@ -1,1 +1,70 @@
-<p>scheduler works!</p>
+<div class="container-fluid">
+    <div class="row mt-4">
+        <h3 class="text-center">
+            {{ 'components.account.components.scheduler.title' | translate }}
+        </h3>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <span class="input-group-text" >{{ 'components.account.components.scheduler.schedulephoto' | translate }}</span>
+                <input (change)="onFileChanged($event.target.files)" class="form-control" type="file">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">{{ 'components.account.components.scheduler.scheduledescription' | translate }}</span>
+                <textarea [(ngModel)]="Description" class="form-control" style="max-height: 500px;"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">{{ 'components.account.components.scheduler.scheduledate' | translate }}</span>
+                <dp-date-picker class="form-control" [(ngModel)]="Date" [theme]="'dp-material'" [mode]="'daytime'" [config]="DatePickerConfig"></dp-date-picker>
+            </div>
+
+            <button (click)="AddSchedule()" type="button" class="btn btn-dark">{{ 'components.account.components.scheduler.addschedule' | translate }}</button>
+        </div>
+        <div class="col-3">
+            <img class="border img-fluid" [src]="this.LoadedFile">
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <h3 class="text-center">
+            {{ 'components.account.components.scheduler.list' | translate }}
+        </h3>
+    </div>
+
+    <div class="row mt-4">
+        <div class="table-responsive">
+            <table *ngIf="this.Schedules != null; else loading" class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{{ 'components.account.components.scheduler.scheduledescription' | translate }}</th>
+                        <th scope="col">{{ 'components.account.components.scheduler.scheduledate' | translate }}</th>
+                        <th scope="col">{{ 'components.account.components.scheduler.schedulephoto' | translate }}</th>
+                        <th scope="col">{{ 'components.account.components.scheduler.editschedule' | translate }}</th>
+                        <th scope="col">{{ 'components.account.components.scheduler.deleteschedule' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let schedule of this.Schedules; let i = index">
+                        <th scope="row">{{ i }}</th>
+                        <td>{{ schedule.description }}</td>
+                        <td>{{ this.FormatDate(schedule.date) }}</td>
+                        <td>
+                            <img class="border img-fluid" style="max-height: 100px; max-width: 100px" [src]="GetImageFromBuffer(schedule.photo.data)">
+                        </td>
+                        <td><i class="text-info far fa-edit"></i></td>
+                        <td><i (click)="this.InstagramService.DeleteSchedule(schedule.id)" class="text-danger fas fa-minus-circle"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="loading">        
+        <div class="spinner-border text-warning my-2" role="status"></div>
+    </div>
+</ng-template>

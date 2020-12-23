@@ -7,7 +7,8 @@
         "registered": "Zarejestrowano pomyślnie.",
         "settingssaved": "Zapisano ustawienia.",
         "accountdeleted": "Konto zostało usunięte",
-        "accountstatuschanged": "Status konta został zmieniony"
+        "accountstatuschanged": "Status konta został zmieniony",
+        "scheduleadded": "Wpis został dodany do harmonogramu"
     },
     "navigation":
     {
@@ -87,6 +88,17 @@
                 {
                     "title": "Dane o obserwujących",
                     "notbusiness": "Profil musi być biznesowy aby uzyskać dane."
+                },
+                "scheduler":
+                {
+                    "title": "Planowanie wpisów",
+                    "list": "Zaplanowane wpisy",
+                    "addschedule": "Dodaj wpis",
+                    "deleteschedule": "Usuń wpis",
+                    "editschedule": "Edytuj wpis",
+                    "scheduledate": "Data",
+                    "scheduledescription": "Opis",
+                    "schedulephoto": "Zdjęcie"
                 }
             }
         }

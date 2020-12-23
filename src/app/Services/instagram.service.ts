@@ -108,4 +108,38 @@ export class InstagramService
             });
         });
     }
+
+    async AddSchedule(ID: number, Description: string, Date: string, Photo: File)
+    {
+        return new Promise<Object>(async (resolve,reject) => 
+        {
+            this.API.AddSchedule(ID, Description, Date, Photo).subscribe((response: any) => 
+            {
+                this.ToastService.success(this.Translate.instant('notifications.scheduleadded'));
+                return resolve(response.data);
+            }, (error: HttpErrorResponse) => 
+            {
+                return reject(error);
+            });
+        });
+    }
+
+    async GetSchedules(ID: number)
+    {
+        return new Promise<Object>(async (resolve,reject) => 
+        {
+            this.API.GetSchedule(ID).subscribe((response: any) => 
+            {
+                return resolve(response.data);
+            }, (error: HttpErrorResponse) => 
+            {
+                return reject(error);
+            });
+        });
+    }
+
+    async DeleteSchedule(ID: number)
+    {
+
+    }
 }

@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ChartsModule } from 'ng2-charts';
-
+import { DpDatePickerModule } from 'ng2-date-picker';
 
 import { AppComponent } from './Components/Main/App/app.component';
 import { NavigationComponent } from './Components/Main/Navigation/navigation.component';
@@ -58,6 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         AppRoutingModule,
         ChartsModule,
+        DpDatePickerModule,
         ToastrModule.forRoot({ maxOpened: 3, autoDismiss: true, positionClass: 'toast-bottom-right', progressBar: true, closeButton: true, tapToDismiss: false }),
         TranslateModule.forRoot({
             defaultLanguage: 'pl',
