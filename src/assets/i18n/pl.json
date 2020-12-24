@@ -6,9 +6,10 @@
         "loggedout": "Zostałeś wylogowany.",
         "registered": "Zarejestrowano pomyślnie.",
         "settingssaved": "Zapisano ustawienia.",
-        "accountdeleted": "Konto zostało usunięte",
-        "accountstatuschanged": "Status konta został zmieniony",
-        "scheduleadded": "Wpis został dodany do harmonogramu"
+        "accountdeleted": "Konto zostało usunięte.",
+        "accountstatuschanged": "Status konta został zmieniony.",
+        "scheduleadded": "Wpis został dodany do harmonogramu.",
+        "scheduleremoved": "Wpis został usunięty."
     },
     "navigation":
     {

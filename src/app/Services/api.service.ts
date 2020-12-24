@@ -64,7 +64,7 @@ export class APIService
     public GetInsights(AccountID: number): Observable<Object>
     {
         const params = new HttpParams().append('accountid', AccountID.toString());
-        
+
         return this.http.get('/api/instagram/insights', { params: params } );
     }
 
@@ -84,5 +84,10 @@ export class APIService
         uploadData.append('date', Date);
 
         return this.http.post('/api/instagram/photoscheduler', uploadData);
+    }
+
+    public DeleteSchedule(AccountID: number, ScheduleID)
+    {
+        return this.http.request('delete', '/api/instagram/photoscheduler', {body: { accountid: AccountID, scheduleid: ScheduleID }});
     }
 }

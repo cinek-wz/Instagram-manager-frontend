@@ -55,7 +55,7 @@
                             <img class="border img-fluid" style="max-height: 100px; max-width: 100px" [src]="GetImageFromBuffer(schedule.photo.data)">
                         </td>
                         <td><i class="text-info far fa-edit"></i></td>
-                        <td><i (click)="this.InstagramService.DeleteSchedule(schedule.id)" class="text-danger fas fa-minus-circle"></i></td>
+                        <td><i (click)="this.DeleteSchedule(this.Account.id, schedule.id)" class="text-danger fas fa-minus-circle"></i></td>
                     </tr>
                 </tbody>
             </table>

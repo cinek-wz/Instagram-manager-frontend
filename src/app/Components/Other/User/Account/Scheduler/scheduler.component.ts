@@ -77,4 +77,10 @@ export class SchedulerComponent implements OnInit
             await this.GetSchedule();
         }
     }
+
+    async DeleteSchedule(AccountID: number, ScheduleID)
+    {
+        this.InstagramService.DeleteSchedule(AccountID, ScheduleID);
+        await this.GetSchedule();
+    }
 }

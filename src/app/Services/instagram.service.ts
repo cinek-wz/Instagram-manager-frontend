@@ -111,12 +111,12 @@ export class InstagramService
 
     async AddSchedule(ID: number, Description: string, Date: string, Photo: File)
     {
-        return new Promise<Object>(async (resolve,reject) => 
+        return new Promise<void>(async (resolve,reject) => 
         {
             this.API.AddSchedule(ID, Description, Date, Photo).subscribe((response: any) => 
             {
                 this.ToastService.success(this.Translate.instant('notifications.scheduleadded'));
-                return resolve(response.data);
+                return resolve();
             }, (error: HttpErrorResponse) => 
             {
                 return reject(error);
@@ -130,16 +130,27 @@ export class InstagramService
         {
             this.API.GetSchedule(ID).subscribe((response: any) => 
             {
-                return resolve(response.data);
+                resolve(response.data);
             }, (error: HttpErrorResponse) => 
             {
-                return reject(error);
+                reject(error);
             });
         });
     }
 
-    async DeleteSchedule(ID: number)
+    async DeleteSchedule(AccountID: number, ScheduleID)
     {
+        return new Promise<void>(async (resolve,reject) => 
+        {
+            this.API.DeleteSchedule(AccountID, ScheduleID).subscribe((response: any) => 
+            {
+                this.ToastService.success(this.Translate.instant('notifications.scheduleremoved'));
+                resolve();
 
+            }, (error: HttpErrorResponse) => 
+            {
+                reject(error);
+            });
+        });
     }
 }
