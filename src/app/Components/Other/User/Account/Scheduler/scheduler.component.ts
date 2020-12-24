@@ -67,10 +67,10 @@ export class SchedulerComponent implements OnInit
 
     async AddSchedule()
     {
-        if (this.SelectedFile != null)
+        if (this.SelectedFile != null && this.Date != null)
         {
             await this.InstagramService.AddSchedule(this.Account.id, this.Description, this.Date.toISOString(), this.SelectedFile);
-            this.SelectedFile = null;
+            
             this.Description = null;
             this.Date = null;
 
