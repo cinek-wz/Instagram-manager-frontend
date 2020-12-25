@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-data-loader',
@@ -7,10 +7,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class DataLoaderComponent implements OnInit 
 {
-    @Input() Data;
+    @Input() Condition;
+
+    @Input() ErrorCondition;
+    @Input() ErrorMessage: string;
 
     constructor() { }
 
-    ngOnInit(): void { }
+    ngOnInit()
+    { 
+        console.log(this.Condition);
+    }
 
 }

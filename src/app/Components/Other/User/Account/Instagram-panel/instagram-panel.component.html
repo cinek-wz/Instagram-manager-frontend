@@ -38,29 +38,31 @@
         </div>
     </div>
     <!-- Top photos -->
-    <ng-container *ngIf="this.Account.topphotos != null && this.Account.topphotos.length > 0">
-        <div class="row mt-4">
-            <h3 class="text-center">
-                {{ 'components.account.components.panel.topphotos' | translate }}
-            </h3>
-        </div>
-        <div class="row mt-4">
-            <div *ngFor="let photo of this.Account.topphotos; let i = index" class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ photo.photo }}" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">#{{i+1}}</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>{{ 'components.account.components.panel.comments' | translate }}</b>: {{ photo.comments }}</li>
-                        <li class="list-group-item"><b>{{ 'components.account.components.panel.likes' | translate }}</b>: {{ photo.likes }}</li>
-                        <li class="list-group-item"><b>{{ 'components.account.components.panel.postedat' | translate }}</b>: {{ ConvertToDate(photo.time) }}</li>
-                    </ul>
-                    <div class="card-body">
-                        <p class="text-wrap">{{ photo.description }}</p>
+    <div class="row mt-4">
+        <h3 class="text-center">
+            {{ 'components.account.components.panel.topphotos' | translate }}
+        </h3>
+    </div>
+    <div class="row mt-4">
+        <app-data-loader [Condition]="this.Account.topphotos != null" [ErrorCondition]="this.Account.topphotos && this.Account.topphotos.length == 0" ErrorMessage="{{ 'components.account.components.panel.nophotos' | translate }}">
+            <div class="row">
+                <div *ngFor="let photo of this.Account.topphotos; let i = index" class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ photo.photo }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">#{{i+1}}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>{{ 'components.account.components.panel.comments' | translate }}</b>: {{ photo.comments }}</li>
+                            <li class="list-group-item"><b>{{ 'components.account.components.panel.likes' | translate }}</b>: {{ photo.likes }}</li>
+                            <li class="list-group-item"><b>{{ 'components.account.components.panel.postedat' | translate }}</b>: {{ ConvertToDate(photo.time) }}</li>
+                        </ul>
+                        <div class="card-body">
+                            <p class="text-wrap">{{ photo.description }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </ng-container>
+        </app-data-loader>
+    </div>
 </div>

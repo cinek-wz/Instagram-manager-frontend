@@ -6,23 +6,16 @@
     </div>
     <div class="row mt-4">
         <div class="col-12">
-            <app-data-loader [Data]="this.BusinessAccount">
-                <ng-container *ngIf="this.BusinessAccount == true">
-                    <div style="display: block">
-                        <canvas baseChart
-                                [datasets]="barChartData"
-                                [labels]="barChartLabels"
-                                [options]="barChartOptions"
-                                [legend]="barChartLegend"
-                                [chartType]="barChartType">
-                        </canvas>
-                    </div>
-                </ng-container>
-                <ng-container *ngIf="this.BusinessAccount == false">
-                    <div class="text-center">        
-                        {{ 'components.account.components.insights.notbusiness' | translate }}
-                    </div>
-                </ng-container>
+            <app-data-loader [Condition]="this.BusinessAccount != null" [ErrorCondition]="this.BusinessAccount == false" ErrorMessage="{{ 'components.account.components.insights.notbusiness' | translate }}">
+                <div style="display: block">
+                    <canvas baseChart
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                    </canvas>
+                </div>
             </app-data-loader>
         </div>
     </div>

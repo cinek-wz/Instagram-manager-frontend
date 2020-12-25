@@ -59,24 +59,14 @@ export class InstagramService
     {
         return new Promise<Object>(async (resolve,reject) => 
         {
-            let Index = this.DataService.Accounts.findIndex((x) => x.id == ID);
-
-            if(this.DataService.Accounts[Index].topphotos == null)
+            this.API.GetTopPhotos(ID).subscribe((response: any) => 
             {
-                this.API.GetTopPhotos(ID).subscribe((response: any) => 
-                {
-                    let TopPhotos = this.DataService.Accounts[Index].topphotos = response.data;
-                    return resolve(TopPhotos);
-                }, (error: HttpErrorResponse) => 
-                {
-                    this.ToastService.error(this.Translate.instant('notifications.internalerror'));
-                    return reject();
-                });
-            }
-            else
+                return resolve(response.data);
+            }, (error: HttpErrorResponse) => 
             {
-                return resolve(this.DataService.Accounts[Index].topphotos);
-            }
+                this.ToastService.error(this.Translate.instant('notifications.internalerror'));
+                return reject();
+            });
         });
     }
 

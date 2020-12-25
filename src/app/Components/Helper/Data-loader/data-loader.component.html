@@ -1,7 +1,14 @@
-<div *ngIf="this.Data != null; else loading">
-    <ng-content></ng-content>
-</div>
+<ng-container *ngIf="this.Condition == true; else loading">
+    <ng-container *ngIf="this.ErrorCondition == false; else error">
+        <ng-content></ng-content>
+    </ng-container>
+</ng-container>
 
+<ng-template #error>
+    <div class="text-center my-2">        
+        {{ this.ErrorMessage }}
+    </div>
+</ng-template>
 
 <ng-template #loading>
     <div class="loading">        

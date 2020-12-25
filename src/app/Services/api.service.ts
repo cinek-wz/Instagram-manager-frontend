@@ -53,7 +53,8 @@ export class APIService
 
     public GetTopPhotos(ID: number): Observable<Object>
     {
-        return this.http.post('/api/instagram/topphotos', { accountid: ID } );
+        const params = new HttpParams().append('accountid', ID.toString());
+        return this.http.get('/api/instagram/topphotos', { params: params } );
     }
 
     public GetSimilarTags(ID: number, Tag: string): Observable<Object>

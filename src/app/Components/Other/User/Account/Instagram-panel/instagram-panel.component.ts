@@ -17,18 +17,28 @@ export class InstagramPanelComponent implements OnInit
     public AccountDailyGain;
     public AccountCurrentFollowers;
 
+    public TopPhotos: any = null;
+
     constructor(private route: ActivatedRoute, private Translate: TranslateService, public DataService: DataService, public InstagramService: InstagramService) { }
 
-    async ngOnInit(): Promise<void> 
+    async ngOnInit()
     {
         this.Account = this.DataService.Accounts[this.route.snapshot.parent.paramMap.get('id')];
 
         this.AccountCurrentFollowers = this.Account.currentfollowers;
 
-        this.AccountMonthlyGain = this.AccountCurrentFollowers-this.Account.monthfollowers;
-        this.AccountDailyGain = this.AccountCurrentFollowers-this.Account.dayfollowers;
-        
-        await this.InstagramService.GetTopPhotos(this.Account.id);
+        this.AccountMonthlyGain = this.AccountCurrentFollowers - this.Account.monthfollowers;
+        this.AccountDailyGain = this.AccountCurrentFollowers - this.Account.dayfollowers;
+
+        if(this.Account.topphotos == null)
+        {
+            this.TopPhotos = await this.InstagramService.GetTopPhotos(this.Account.id);
+            this.Account.topphotos = this.TopPhotos;
+        }
+        else
+        {
+            this.TopPhotos = this.Account.topphotos;
+        }
     }
 
     ConvertToDate(Time: number)
