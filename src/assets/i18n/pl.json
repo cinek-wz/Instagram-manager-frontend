@@ -95,6 +95,7 @@
                 {
                     "title": "Planowanie wpisów",
                     "list": "Zaplanowane wpisy",
+                    "noschedule": "Nie posiadasz żadnych zaplanowanych wpisów",
                     "addschedule": "Dodaj wpis",
                     "deleteschedule": "Usuń wpis",
                     "editschedule": "Edytuj wpis",
