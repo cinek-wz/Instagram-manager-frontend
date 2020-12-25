@@ -36,20 +36,24 @@ export class InsightsComponent implements OnInit
 
     constructor(private route: ActivatedRoute, private Translate: TranslateService, public DataService: DataService, public InstagramService: InstagramService) { }
 
-    ngOnInit(): void 
+    async ngOnInit()
     {
         this.Account = this.DataService.Accounts[this.route.snapshot.parent.paramMap.get('id')];
-        this.GetInsights();
+        await this.GetInsights();
     }
 
     async GetInsights()
     {
-        try
-        {
-            let Data: any = await this.InstagramService.GetInsights(this.Account.id);
-            let DataObject = JSON.parse(Data);
-            let DataArray = DataObject.data.user.business_manager.followers_unit.days_hourly_followers_graphs;
+        let Data: any = await this.InstagramService.GetInsights(this.Account.id);
 
+        if(Data.business === false)
+        {
+            this.BusinessAccount = false;
+            return;
+        }
+        else
+        {
+            let DataArray = Data.data;
             this.BusinessAccount = true;
 
             for(let i = 0 ; i < 7; i++)
@@ -59,13 +63,9 @@ export class InsightsComponent implements OnInit
                     let Points = DataArray[i].data_points;
 
                     this.barChartData[p].data.push(Points[p*3].value);
-                    await new Promise(r => setTimeout(r, 20));
+                    await new Promise(r => setTimeout(r, 10));
                 }
             }
-        }
-        catch(Error)
-        {
-            this.BusinessAccount = false;
         }
     }
 }

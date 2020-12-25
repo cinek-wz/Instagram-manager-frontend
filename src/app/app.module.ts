@@ -29,6 +29,7 @@ import { InstagramPanelComponent } from './Components/Other/User/Account/Instagr
 import { TagsFinderComponent } from './Components/Other/User/Account/Tags-finder/tags-finder.component';
 import { InsightsComponent } from './Components/Other/User/Account/Insights/insights.component';
 import { SchedulerComponent } from './Components/Other/User/Account/Scheduler/scheduler.component';
+import { DataLoaderComponent } from './Components/Helper/Data-loader/data-loader.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         InstagramPanelComponent,
         TagsFinderComponent,
         InsightsComponent,
-        SchedulerComponent
+        SchedulerComponent,
+        DataLoaderComponent
     ],
     imports: [
         BrowserModule,
