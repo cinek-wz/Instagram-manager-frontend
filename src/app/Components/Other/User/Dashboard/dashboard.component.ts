@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
     isloading$: Observable<boolean>;
 
     constructor(
-        private Translate: TranslateService, 
         private AccountQuery: AccountQuery, 
         public AccountService: AccountService
     ) { }
