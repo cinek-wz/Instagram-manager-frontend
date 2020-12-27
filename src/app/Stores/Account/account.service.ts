@@ -30,8 +30,15 @@ export class AccountService
 
     ModifyAccount(Account: Account)
     {
-        this.Store.update(Account.id, {
-            enabled: !Account.enabled
+        this.API.ChangeInstagramAccountStatus(Account.id, !Account.enabled).subscribe((response: any) => 
+        {
+            this.Store.update(Account.id, {
+                enabled: !Account.enabled
+            });
+        }, (error: HttpErrorResponse) => 
+        {
+            console.log(error);
+            // this.ToastService.error(this.Translate.instant('notifications.internalerror'));
         });
     }
 
