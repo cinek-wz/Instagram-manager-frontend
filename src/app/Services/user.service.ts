@@ -15,7 +15,7 @@ export class UserService
 {
     public isLoggedIn: BehaviorSubject<boolean>;
 
-    //User details
+    // User details
     public Login: string;
     public Email: string;
 
@@ -30,7 +30,7 @@ export class UserService
         {
             this.Login = response.data.login;
             this.Email = response.data.email;
-            await this.InstagramService.GetAccounts();
+            // await this.InstagramService.GetAccounts();
             this.isLoggedIn.next(true);
         }, (error: HttpErrorResponse) => 
         {
@@ -45,7 +45,7 @@ export class UserService
             this.ToastService.success(this.Translate.instant('notifications.loggedin'));
             this.Login = response.data.login;
             this.Email = response.data.email;
-            await this.InstagramService.GetAccounts();
+            // await this.InstagramService.GetAccounts();
             this.isLoggedIn.next(true);
             this.router.navigate(['/dashboard']);
         });

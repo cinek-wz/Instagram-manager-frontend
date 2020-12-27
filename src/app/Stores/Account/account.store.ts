@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
-import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Account } from './account.model';
+import { EntityState, QueryEntity, EntityStore, StoreConfig } from '@datorama/akita';
+
+export type Account =
+{
+    id: number,
+    login: string,
+    password: string,
+    instagramid: string,
+    enabled: boolean
+}
 
 export interface AccountState extends EntityState<Account> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'accounts' })
 export class AccountStore extends EntityStore<AccountState, Account> {
-
-    constructor() 
-    {
+    constructor() {
         super();
+    }
+}
+
+@Injectable({ providedIn: 'root' })
+export class AccountQuery extends QueryEntity<AccountState, Account> {
+    constructor(protected store: AccountStore) {
+        super(store);
     }
 }
