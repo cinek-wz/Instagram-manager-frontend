@@ -14,9 +14,6 @@ export class DataLoaderComponent implements OnInit
 
     constructor() { }
 
-    ngOnInit()
-    { 
-        console.log(this.Condition);
-    }
+    ngOnInit() { }
 
 }

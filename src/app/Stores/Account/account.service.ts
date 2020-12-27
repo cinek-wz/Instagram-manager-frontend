@@ -15,11 +15,8 @@ export class AccountService
 
     getAccounts()
     {
-        console.log(`API CALL`);
         if (!this.AccountQuery.getHasCache())
         {
-            console.log(`API CALL2`);
-
             this.API.GetInstagramAccounts().subscribe((response: any) => {
                 let Accounts = response.data;
                 this.Store.set(Accounts);

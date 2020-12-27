@@ -7,7 +7,10 @@ export type Account =
     login: string,
     password: string,
     instagramid: string,
-    enabled: boolean
+    enabled: boolean,
+    currentfollowers: number,
+    dayfollowers: number,
+    monthfollowers: number
 }
 
 export interface AccountState extends EntityState<Account> {}

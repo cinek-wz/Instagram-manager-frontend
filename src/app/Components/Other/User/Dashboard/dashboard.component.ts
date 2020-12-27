@@ -18,26 +18,13 @@ export class DashboardComponent implements OnInit {
     constructor(
         private Translate: TranslateService, 
         private AccountQuery: AccountQuery, 
-        private AccountService: AccountService
+        public AccountService: AccountService
     ) { }
 
     ngOnInit() { 
         this.accounts$ = this.AccountQuery.selectAll();
         this.isloading$ = this.AccountQuery.selectLoading();
         
-        this.GetAccounts();
-        
-    }
-
-    GetAccounts() {
         this.AccountService.getAccounts();
-    }
-
-    DeleteAccount(Account: Account) {
-        this.AccountService.DeleteAccount(Account);
-    }
-
-    ModifyAccount(Account: Account) {
-        this.AccountService.ModifyAccount(Account);
     }
 }

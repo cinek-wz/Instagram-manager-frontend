@@ -46,6 +46,7 @@
         {
             "title": "Panel użytkownika",
             "linkedaccounts": "Powiązane konta Instagram",
+            "noaccounts": "Nie posiadasz żadnych powiązanych kont.",
             "addaccount": "Dodaj nowe konto",
             "accountdetails": "Szczegóły konta",
             "accountdetailsenter": "Otwórz",
