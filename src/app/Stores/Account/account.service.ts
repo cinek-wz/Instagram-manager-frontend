@@ -1,34 +1,50 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { Account, AccountStore, AccountQuery } from './account.store';
+import { InstagramAccount, AccountStore, AccountQuery } from './account.store';
 import { APIService } from '../../Services/api.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService 
 {
     constructor(
+        private Router: Router, 
         private API: APIService, 
         private Store: AccountStore,
         private AccountQuery: AccountQuery,
     ) {}
 
-    getAccounts()
+    async GetAccounts(): Promise<void>
     {
-        if (!this.AccountQuery.getHasCache())
+        return new Promise<void>((resolve, reject) => 
         {
-            this.API.GetInstagramAccounts().subscribe((response: any) => {
-                let Accounts = response.data;
-                this.Store.set(Accounts);
-            }, (error: HttpErrorResponse) => 
+            if (!this.AccountQuery.getHasCache())
             {
-                console.log(error);
-                // this.ToastService.error(this.Translate.instant('notifications.internalerror'));
-            });
-        }
+                this.API.GetInstagramAccounts().subscribe((response: any) => {
+                    let Accounts = response.data;
+                    this.Store.set(Accounts);
+                    return resolve();
+                }, (error: HttpErrorResponse) => 
+                {
+                    console.log(error);
+                    return reject();
+                    // this.ToastService.error(this.Translate.instant('notifications.internalerror'));
+                });
+            }
+            else
+            {
+                return resolve();
+            }
+        });
     }
 
-    ModifyAccount(Account: Account)
+    SetActive(AccountID: string)
+    {
+        this.Store.setActive(AccountID);
+    }
+
+    ModifyAccount(Account: InstagramAccount)
     {
         this.API.ChangeInstagramAccountStatus(Account.id, !Account.enabled).subscribe((response: any) => 
         {
@@ -42,7 +58,7 @@ export class AccountService
         });
     }
 
-    DeleteAccount(Account: Account)
+    DeleteAccount(Account: InstagramAccount)
     {
         this.Store.remove(Account.id);
     }
