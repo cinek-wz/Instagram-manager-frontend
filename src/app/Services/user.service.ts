@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { APIService } from './api.service';
-import { InstagramService } from 'src/app/Services/instagram.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +18,7 @@ export class UserService
     public Login: string;
     public Email: string;
 
-    constructor(private ToastService: ToastrService, private router: Router, public InstagramService: InstagramService, private API: APIService, private Translate: TranslateService) 
+    constructor(private ToastService: ToastrService, private router: Router, private API: APIService, private Translate: TranslateService) 
     { 
         this.isLoggedIn = new BehaviorSubject(undefined);
     }

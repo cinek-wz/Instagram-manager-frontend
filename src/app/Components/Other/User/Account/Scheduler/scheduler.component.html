@@ -20,7 +20,7 @@
                 <dp-date-picker class="form-control" [(ngModel)]="Date" [theme]="'dp-material'" [mode]="'daytime'" [config]="DatePickerConfig"></dp-date-picker>
             </div>
 
-            <button (click)="AddSchedule()" type="button" class="btn btn-dark">{{ 'components.account.components.scheduler.addschedule' | translate }}</button>
+            <button (click)="this.AccountService.AddSchedule(this.Description, this.Date.toISOString(), this.SelectedFile)" type="button" class="btn btn-dark">{{ 'components.account.components.scheduler.addschedule' | translate }}</button>
         </div>
         <div class="col-3">
             <img class="border img-fluid" [src]="this.LoadedFile">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="row mt-4">
-        <app-data-loader [Condition]="this.Schedules != null" [ErrorCondition]="this.Schedules && this.Schedules.length == 0" ErrorMessage="{{ 'components.account.components.scheduler.noschedule' | translate }}">
+        <app-data-loader [Condition]="( this.AccountQuery.account$ | async ).schedules != null" [ErrorCondition]="( this.AccountQuery.account$ | async ).schedules && ( this.AccountQuery.account$ | async ).schedules.length == 0" ErrorMessage="{{ 'components.account.components.scheduler.noschedule' | translate }}">
             <div class="table-responsive">
                 <table class="table table-striped table-dark">
                     <thead>
@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let schedule of this.Schedules; let i = index">
+                        <tr *ngFor="let schedule of ( this.AccountQuery.account$ | async ).schedules; let i = index">
                             <th scope="row">{{ i }}</th>
                             <td>{{ schedule.description }}</td>
                             <td>{{ this.FormatDate(schedule.date) }}</td>
@@ -56,7 +56,7 @@
                                 <img class="border img-fluid" style="max-height: 100px; max-width: 100px" [src]="GetImageFromBuffer(schedule.photo.data)">
                             </td>
                             <td><i class="text-info far fa-edit"></i></td>
-                            <td><i (click)="this.DeleteSchedule(this.Account.id, schedule.id)" class="text-danger fas fa-minus-circle"></i></td>
+                            <td><i (click)="this.AccountService.DeleteSchedule(schedule.id)" class="text-danger fas fa-minus-circle"></i></td>
                         </tr>
                     </tbody>
                 </table>
