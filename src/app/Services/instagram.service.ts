@@ -7,6 +7,7 @@ import { APIService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from './data.service';
+import { InstagramTopPhoto } from '../Stores/Account/account.store';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export class InstagramService
 
     async GetTopPhotos(ID: number)
     {
-        return new Promise<Object>(async (resolve,reject) => 
+        return new Promise<Array<InstagramTopPhoto>>(async (resolve,reject) => 
         {
             this.API.GetTopPhotos(ID).subscribe((response: any) => 
             {

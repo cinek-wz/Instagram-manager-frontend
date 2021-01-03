@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { EntityState, QueryEntity, EntityStore, StoreConfig, ActiveState } from '@datorama/akita';
 import { Observable } from 'rxjs';
 
+export type InstagramTopPhoto = 
+{
+    photo: string,
+    comments: number,
+    likes: number,
+    time: Date
+}
+
 export type InstagramAccount =
 {
     id: number,
@@ -14,7 +22,7 @@ export type InstagramAccount =
     monthfollowers: number,
 
     insights: Object,
-    topphotos: Array<Object>
+    topphotos: Array<InstagramTopPhoto>
 };
 
 export interface AccountState extends EntityState<InstagramAccount>, ActiveState {}

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { InstagramAccount, AccountQuery } from '../../../../../Stores/Account/account.store';
+import { InstagramAccount, AccountQuery, InstagramTopPhoto } from '../../../../../Stores/Account/account.store';
 
 import { InstagramService } from 'src/app/Services/instagram.service';
 import { AccountService } from './../../../../../Stores/Account/account.service';
@@ -10,15 +10,11 @@ import { AccountService } from './../../../../../Stores/Account/account.service'
   templateUrl: './instagram-panel.component.html',
   styleUrls: ['./instagram-panel.component.scss']
 })
-export class InstagramPanelComponent implements OnInit 
+export class InstagramPanelComponent implements OnInit
 {
     public Account: InstagramAccount;
-    public AccountMonthlyGain;
-    public AccountDailyGain;
-    public AccountCurrentFollowers;
 
     constructor(
-        private route: ActivatedRoute, 
         public InstagramService: InstagramService,
         public AccountQuery: AccountQuery, 
         public AccountService: AccountService
@@ -26,19 +22,14 @@ export class InstagramPanelComponent implements OnInit
 
     async ngOnInit()
     {
-        this.AccountQuery.account$.subscribe((Account) => 
-        {
-            this.Account = Account;
-            this.AccountCurrentFollowers = this.Account.currentfollowers;
-            this.AccountMonthlyGain = this.AccountCurrentFollowers - this.Account.monthfollowers;
-            this.AccountDailyGain = this.AccountCurrentFollowers - this.Account.dayfollowers;
-        });
+        this.Account = this.AccountQuery.getActive();
 
-        /*if (this.Account.topphotos == null)
+
+        if (this.Account.topphotos == null)
         {
-            this.TopPhotos = await this.InstagramService.GetTopPhotos(this.Account.id);
-            this.Account.topphotos = this.TopPhotos;
-        }*/
+            let TopPhotos: Array<InstagramTopPhoto> = await this.InstagramService.GetTopPhotos(this.Account.id);
+            this.AccountService.SetTopPhotos(this.Account, TopPhotos);
+        }
     }
 
     ConvertToDate(Time: number)

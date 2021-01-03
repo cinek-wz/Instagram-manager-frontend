@@ -12,7 +12,7 @@
                     {{ 'components.account.components.panel.monthlygain' | translate }}
                 </p>
                 <p class="fw-bold">
-                    {{ this.AccountMonthlyGain }}
+                    {{ this.Account.currentfollowers - this.Account.monthfollowers }}
                 </p>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     {{ 'components.account.components.panel.dailygain' | translate }}
                 </p>
                 <p class="fw-bold">
-                    {{ this.AccountDailyGain }}
+                    {{ this.Account.currentfollowers - this.Account.dayfollowers }}
                 </p>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     {{ 'components.account.components.panel.currentfollowers' | translate }}
                 </p>
                 <p class="fw-bold">
-                    {{ this.AccountCurrentFollowers }}
+                    {{ this.Account.currentfollowers }}
                 </p>
             </div>
         </div>
@@ -44,7 +44,7 @@
         </h3>
     </div>
     <div class="row mt-4">
-        <!-- <app-data-loader [Condition]="this.Account.topphotos != null" [ErrorCondition]="this.Account.topphotos && this.Account.topphotos.length == 0" ErrorMessage="{{ 'components.account.components.panel.nophotos' | translate }}">
+        <app-data-loader [Condition]="( this.AccountQuery.account$ | async ).topphotos != null" [ErrorCondition]="( this.AccountQuery.account$ | async ).topphotos && ( this.AccountQuery.account$ | async ).topphotos.length == 0" ErrorMessage="{{ 'components.account.components.panel.nophotos' | translate }}">
             <div class="row">
                 <div *ngFor="let photo of this.Account.topphotos; let i = index" class="col-4">
                     <div class="card" style="width: 18rem;">
@@ -63,6 +63,6 @@
                     </div>
                 </div>
             </div>
-        </app-data-loader> -->
+        </app-data-loader>
     </div>
 </div>

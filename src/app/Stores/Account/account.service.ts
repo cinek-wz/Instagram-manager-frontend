@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { InstagramAccount, AccountStore, AccountQuery } from './account.store';
+import { InstagramAccount, AccountStore, AccountQuery, InstagramTopPhoto } from './account.store';
 import { APIService } from '../../Services/api.service';
 import { Router } from '@angular/router';
 
@@ -42,6 +42,13 @@ export class AccountService
     SetActive(AccountID: string)
     {
         this.Store.setActive(AccountID);
+    }
+
+    SetTopPhotos(Account: InstagramAccount, Photos: Array<InstagramTopPhoto>)
+    {
+        this.Store.update(Account.id, {
+            topphotos: Photos
+        });
     }
 
     ModifyAccount(Account: InstagramAccount)
