@@ -41,7 +41,7 @@ export class APIService
 
     public DeleteInstagramAccount(ID: number): Observable<Object>
     {
-        return this.http.request('delete', '/api/instagram/account', {body: { accountid: ID }});
+        return this.http.request('delete', '/api/instagram/account', { body: { accountid: ID }} );
     }
 
     public ChangeInstagramAccountStatus(ID: number, Status: boolean): Observable<Object>

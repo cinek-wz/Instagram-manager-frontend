@@ -8,10 +8,10 @@
                 </div>
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item nav-link">
-                        <i class="fas fa-hashtag me-1 ms-1"></i>{{ this.AccountIndex }}
+                        <i class="fas fa-hashtag me-1 ms-1"></i>{{ (this.AccountQuery.account$ | async ).id }}
                     </li>
                     <li class="nav-item nav-link">
-                        {{ this.AccountLogin }}
+                        {{ (this.AccountQuery.account$ | async ).login }}
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -36,9 +36,3 @@
         </div>
     </div>
 </div>
-
-<ng-template #loading>
-    <div class="loading">        
-        <div class="spinner-border text-warning" role="status"></div>
-    </div>
-</ng-template>

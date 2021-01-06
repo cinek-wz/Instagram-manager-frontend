@@ -1,3 +1,4 @@
+import { ActiveAccountGuard } from './Guards/activeaccount.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -28,32 +29,32 @@ const routes: Routes =
         path: 'login', 
         component: LoginComponent,
         canActivate: [ LoginGuard ],
-        data: { title: "components.login.title" }
+        data: { title: 'components.login.title' }
     },
     { 
         path: 'register', 
         component: RegisterComponent,
         canActivate: [ LoginGuard ],
-        data: { title: "components.register.title" }
+        data: { title: 'components.register.title' }
     },
     // Authenticated users
     { 
         path: 'dashboard', 
         component: DashboardComponent,
         canActivate: [ AuthGuard ],
-        data: { title: "components.dashboard.title" }
+        data: { title: 'components.dashboard.title' }
     },
     { 
         path: 'settings', 
         component: SettingsComponent,
         canActivate: [ AuthGuard ],
-        data: { title: "components.settings.title" }
+        data: { title: 'components.settings.title' }
     },
     {
-        path: 'account/:id',
+        path: 'account',
         component: AccountComponent,
-        canActivate: [ AuthGuard ],
-        data: { title: "components.account.title" },
+        canActivate: [ AuthGuard, ActiveAccountGuard ],
+        data: { title: 'components.account.title' },
         children: 
         [
             { path: '', component: InstagramPanelComponent },

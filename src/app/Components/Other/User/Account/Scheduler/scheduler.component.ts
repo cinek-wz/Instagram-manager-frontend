@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
-import { DataService } from 'src/app/Services/data.service';
-import { InstagramService } from 'src/app/Services/instagram.service';
+import { InstagramAccount, AccountQuery, InstagramTopPhoto } from '../../../../../Stores/Account/account.store';
+import { AccountService } from './../../../../../Stores/Account/account.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -13,9 +11,7 @@ import { InstagramService } from 'src/app/Services/instagram.service';
 })
 export class SchedulerComponent implements OnInit
 {
-    public Account;
-
-    public Schedules;
+    public Account: InstagramAccount;
 
     public SelectedFile: File;
     public Description: string;
@@ -29,12 +25,20 @@ export class SchedulerComponent implements OnInit
         firstDayOfWeek: 'mo'
     };
 
-    constructor(private route: ActivatedRoute, private Translate: TranslateService, private domSanitizer: DomSanitizer, public DataService: DataService, public InstagramService: InstagramService) { }
+    constructor(
+        private domSanitizer: DomSanitizer, 
+        public AccountQuery: AccountQuery, 
+        public AccountService: AccountService
+    ) { }
 
-    ngOnInit(): void
+    async ngOnInit()
     {
-        this.Account = this.DataService.Accounts[this.route.snapshot.parent.paramMap.get('id')];
-        this.GetSchedule();
+        this.Account = this.AccountQuery.getActive();
+
+        if (this.Account.schedules == null)
+        {
+            await this.AccountService.GetSchedules();
+        }
     }
 
     onFileChanged(files: FileList)
@@ -58,29 +62,5 @@ export class SchedulerComponent implements OnInit
     FormatDate(date: Date)
     {
         return new Date(date).toLocaleDateString('pl', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'});
-    }
-
-    async GetSchedule()
-    {
-        this.Schedules = await this.InstagramService.GetSchedules(this.Account.id);
-    }
-
-    async AddSchedule()
-    {
-        if (this.SelectedFile != null && this.Date != null)
-        {
-            await this.InstagramService.AddSchedule(this.Account.id, this.Description, this.Date.toISOString(), this.SelectedFile);
-            
-            this.Description = null;
-            this.Date = null;
-
-            await this.GetSchedule();
-        }
-    }
-
-    async DeleteSchedule(AccountID: number, ScheduleID)
-    {
-        this.InstagramService.DeleteSchedule(AccountID, ScheduleID);
-        await this.GetSchedule();
     }
 }

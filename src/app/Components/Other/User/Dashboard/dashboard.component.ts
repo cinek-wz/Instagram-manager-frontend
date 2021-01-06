@@ -1,8 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataService } from 'src/app/Services/data.service';
-import { InstagramService } from 'src/app/Services/instagram.service';
-import { TranslateService } from '@ngx-translate/core';
+import { InstagramAccount, AccountQuery } from '../../../../Stores/Account/account.store';
+import { AccountService } from './../../../../Stores/Account/account.service';
+
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,9 +11,20 @@ import { TranslateService } from '@ngx-translate/core';
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit 
-{
-    constructor(private Translate: TranslateService, public DataService: DataService, public InstagramService: InstagramService) { }
+export class DashboardComponent implements OnInit {
+    constructor(
+        private Router: Router,
+        public AccountQuery: AccountQuery, 
+        public AccountService: AccountService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.AccountService.GetAccounts();
+    }
+
+    OpenAccount(ID: string)
+    {
+        this.AccountService.SetActive(ID);
+        this.Router.navigate(['/account']);
+    }
 }

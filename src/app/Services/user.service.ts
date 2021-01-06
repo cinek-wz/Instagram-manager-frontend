@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { APIService } from './api.service';
-import { InstagramService } from 'src/app/Services/instagram.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,11 +14,11 @@ export class UserService
 {
     public isLoggedIn: BehaviorSubject<boolean>;
 
-    //User details
+    // User details
     public Login: string;
     public Email: string;
 
-    constructor(private ToastService: ToastrService, private router: Router, public InstagramService: InstagramService, private API: APIService, private Translate: TranslateService) 
+    constructor(private ToastService: ToastrService, private router: Router, private API: APIService, private Translate: TranslateService) 
     { 
         this.isLoggedIn = new BehaviorSubject(undefined);
     }
@@ -30,7 +29,7 @@ export class UserService
         {
             this.Login = response.data.login;
             this.Email = response.data.email;
-            await this.InstagramService.GetAccounts();
+            // await this.InstagramService.GetAccounts();
             this.isLoggedIn.next(true);
         }, (error: HttpErrorResponse) => 
         {
@@ -45,7 +44,7 @@ export class UserService
             this.ToastService.success(this.Translate.instant('notifications.loggedin'));
             this.Login = response.data.login;
             this.Email = response.data.email;
-            await this.InstagramService.GetAccounts();
+            // await this.InstagramService.GetAccounts();
             this.isLoggedIn.next(true);
             this.router.navigate(['/dashboard']);
         });

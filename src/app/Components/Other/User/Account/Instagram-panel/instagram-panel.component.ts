@@ -1,49 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
-import { DataService } from 'src/app/Services/data.service';
-import { InstagramService } from 'src/app/Services/instagram.service';
+import { InstagramAccount, AccountQuery, InstagramTopPhoto } from '../../../../../Stores/Account/account.store';
+import { AccountService } from './../../../../../Stores/Account/account.service';
 
 @Component({
   selector: 'app-instagram-panel',
   templateUrl: './instagram-panel.component.html',
   styleUrls: ['./instagram-panel.component.scss']
 })
-export class InstagramPanelComponent implements OnInit 
+export class InstagramPanelComponent implements OnInit
 {
-    public Account;
-    public AccountMonthlyGain;
-    public AccountDailyGain;
-    public AccountCurrentFollowers;
+    public Account: InstagramAccount;
 
-    public TopPhotos: any = null;
-
-    constructor(private route: ActivatedRoute, private Translate: TranslateService, public DataService: DataService, public InstagramService: InstagramService) { }
+    constructor(
+        public AccountQuery: AccountQuery, 
+        public AccountService: AccountService
+    ) { }
 
     async ngOnInit()
     {
-        this.Account = this.DataService.Accounts[this.route.snapshot.parent.paramMap.get('id')];
+        this.Account = this.AccountQuery.getActive();
 
-        this.AccountCurrentFollowers = this.Account.currentfollowers;
-
-        this.AccountMonthlyGain = this.AccountCurrentFollowers - this.Account.monthfollowers;
-        this.AccountDailyGain = this.AccountCurrentFollowers - this.Account.dayfollowers;
-
-        if(this.Account.topphotos == null)
+        if (this.Account.topphotos == null)
         {
-            this.TopPhotos = await this.InstagramService.GetTopPhotos(this.Account.id);
-            this.Account.topphotos = this.TopPhotos;
-        }
-        else
-        {
-            this.TopPhotos = this.Account.topphotos;
+            await this.AccountService.GetTopPhotos();
         }
     }
 
     ConvertToDate(Time: number)
     {
-        let Text = new Date(Time*1000);
+        let Text = new Date(Time * 1000);
         return Text.toLocaleString();
     }
 

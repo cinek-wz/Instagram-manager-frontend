@@ -1,10 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
-import { DataService } from 'src/app/Services/data.service';
-import { InstagramService } from 'src/app/Services/instagram.service';
+import { InstagramAccount, AccountQuery, InstagramTopPhoto } from '../../../../../Stores/Account/account.store';
+import { AccountService } from './../../../../../Stores/Account/account.service';
 
 @Component({
   selector: 'app-insights',
@@ -13,7 +10,7 @@ import { InstagramService } from 'src/app/Services/instagram.service';
 })
 export class InsightsComponent implements OnInit 
 {
-    public Account;
+    public Account: InstagramAccount;
     public BusinessAccount: boolean = null;
 
     public barChartOptions = { scaleShowVerticalLines: false, responsive: true };  
@@ -34,19 +31,29 @@ export class InsightsComponent implements OnInit
         {data: [], label: '21:00'}
     ];
 
-    constructor(private route: ActivatedRoute, private Translate: TranslateService, public DataService: DataService, public InstagramService: InstagramService) { }
+    constructor(
+        public AccountQuery: AccountQuery, 
+        public AccountService: AccountService
+    ) { }
 
     async ngOnInit()
     {
-        this.Account = this.DataService.Accounts[this.route.snapshot.parent.paramMap.get('id')];
-        await this.GetInsights();
+        this.Account = this.AccountQuery.getActive();
+
+        if (this.Account.insights == null)
+        {
+            let Data = await this.AccountService.GetInsights();
+            await this.SetInsights(Data);
+        }
+        else
+        {
+            await this.SetInsights(this.Account.insights);
+        }
     }
 
-    async GetInsights()
+    async SetInsights(Data)
     {
-        let Data: any = await this.InstagramService.GetInsights(this.Account.id);
-
-        if(Data.business === false)
+        if (Data.business === false)
         {
             this.BusinessAccount = false;
             return;
@@ -62,8 +69,7 @@ export class InsightsComponent implements OnInit
                 {
                     let Points = DataArray[i].data_points;
 
-                    this.barChartData[p].data.push(Points[p*3].value);
-                    await new Promise(r => setTimeout(r, 10));
+                    this.barChartData[p].data.push(Points[p * 3].value);
                 }
             }
         }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
-import { DataService } from 'src/app/Services/data.service';
+import { InstagramAccount, AccountQuery } from '../../../../Stores/Account/account.store';
+import { AccountService } from './../../../../Stores/Account/account.service';
 
 @Component({
   selector: 'app-account',
@@ -11,15 +10,13 @@ import { DataService } from 'src/app/Services/data.service';
 })
 export class AccountComponent implements OnInit 
 {
-    public AccountIndex;
-    public AccountLogin;
+    public Account: InstagramAccount;
 
-    constructor(private route: ActivatedRoute, private Translate: TranslateService, public DataService: DataService) { }
+    constructor(
+        public AccountQuery: AccountQuery,
+        public AccountService: AccountService
+    ) { }
 
-    ngOnInit(): void 
-    {
-        this.AccountIndex = this.route.snapshot.paramMap.get('id');
-        this.AccountLogin = this.DataService.Accounts[this.AccountIndex].login;
-    }
+    async ngOnInit() {}
 
 }
