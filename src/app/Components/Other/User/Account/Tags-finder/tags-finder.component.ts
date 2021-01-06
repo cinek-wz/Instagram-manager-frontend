@@ -24,7 +24,7 @@ export class TagsFinderComponent implements OnInit
         public Translate: TranslateService
     ) { }
 
-    ngOnInit(): void 
+    ngOnInit()
     {
         this.Account = this.AccountQuery.getActive();
     }

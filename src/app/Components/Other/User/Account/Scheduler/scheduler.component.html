@@ -43,19 +43,19 @@
                             <th scope="col">{{ 'components.account.components.scheduler.scheduledescription' | translate }}</th>
                             <th scope="col">{{ 'components.account.components.scheduler.scheduledate' | translate }}</th>
                             <th scope="col">{{ 'components.account.components.scheduler.schedulephoto' | translate }}</th>
-                            <th scope="col">{{ 'components.account.components.scheduler.editschedule' | translate }}</th>
+                            <!-- <th scope="col">{{ 'components.account.components.scheduler.editschedule' | translate }}</th> -->
                             <th scope="col">{{ 'components.account.components.scheduler.deleteschedule' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let schedule of ( this.AccountQuery.account$ | async ).schedules; let i = index">
                             <th scope="row">{{ i }}</th>
-                            <td>{{ schedule.description }}</td>
+                            <td class="text-wrap text-break">{{ schedule.description }}</td>
                             <td>{{ this.FormatDate(schedule.date) }}</td>
                             <td>
                                 <img class="border img-fluid" style="max-height: 100px; max-width: 100px" [src]="GetImageFromBuffer(schedule.photo.data)">
                             </td>
-                            <td><i class="text-info far fa-edit"></i></td>
+                            <!-- <td><i class="text-info far fa-edit"></i></td> -->
                             <td><i (click)="this.AccountService.DeleteSchedule(schedule.id)" class="text-danger fas fa-minus-circle"></i></td>
                         </tr>
                     </tbody>

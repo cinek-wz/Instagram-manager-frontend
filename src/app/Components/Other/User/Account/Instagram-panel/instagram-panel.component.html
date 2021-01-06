@@ -46,7 +46,7 @@
     <div class="row mt-4">
         <app-data-loader [Condition]="( this.AccountQuery.account$ | async ).topphotos != null" [ErrorCondition]="( this.AccountQuery.account$ | async ).topphotos && ( this.AccountQuery.account$ | async ).topphotos.length == 0" ErrorMessage="{{ 'components.account.components.panel.nophotos' | translate }}">
             <div class="row">
-                <div *ngFor="let photo of this.Account.topphotos; let i = index" class="col-4">
+                <div *ngFor="let photo of ( this.AccountQuery.account$ | async ).topphotos; let i = index" class="col-4">
                     <div class="card" style="width: 18rem;">
                         <img src="{{ photo.photo }}" class="card-img-top">
                         <div class="card-body">
