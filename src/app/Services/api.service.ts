@@ -39,6 +39,11 @@ export class APIService
         return this.http.get('/api/instagram/accounts');
     }
 
+    public AddInstagramAccount(Login: string, Password: string): Observable<Object>
+    {
+        return this.http.post('/api/instagram/account', { login: Login, password: Password } );
+    }
+
     public DeleteInstagramAccount(ID: number): Observable<Object>
     {
         return this.http.request('delete', '/api/instagram/account', { body: { accountid: ID }} );
@@ -54,26 +59,27 @@ export class APIService
     public GetTopPhotos(ID: number): Observable<Object>
     {
         const params = new HttpParams().append('accountid', ID.toString());
-        return this.http.get('/api/instagram/topphotos', { params: params } );
+        return this.http.get('/api/instagram/topphotos', { params } );
     }
 
     public GetSimilarTags(ID: number, Tag: string): Observable<Object>
     {
-        return this.http.post('/api/instagram/similartags', { accountid: ID, tag: Tag } );
+        const params = new HttpParams().append('accountid', ID.toString()).append('tag', Tag);
+        return this.http.get('/api/instagram/similartags', { params }  );
     }
 
     public GetInsights(AccountID: number): Observable<Object>
     {
         const params = new HttpParams().append('accountid', AccountID.toString());
 
-        return this.http.get('/api/instagram/insights', { params: params } );
+        return this.http.get('/api/instagram/insights', { params } );
     }
 
     public GetSchedule(ID: number)
     {
         const params = new HttpParams().append('accountid', ID.toString());
         
-        return this.http.request('get', '/api/instagram/photoscheduler', { params: params });
+        return this.http.request('get', '/api/instagram/photoscheduler', { params });
     }
 
     public AddSchedule(ID: number, Description: string, Date: string, Photo: any)
@@ -89,6 +95,6 @@ export class APIService
 
     public DeleteSchedule(AccountID: number, ScheduleID)
     {
-        return this.http.request('delete', '/api/instagram/photoscheduler', {body: { accountid: AccountID, scheduleid: ScheduleID }});
+        return this.http.request('delete', '/api/instagram/photoscheduler', { body: { accountid: AccountID, scheduleid: ScheduleID }} );
     }
 }
