@@ -167,11 +167,11 @@ export class AccountService
         }
     }
 
-    // TO DO: API
     async DeleteAccount(Account: InstagramAccount)
     {
         try
         {
+            await this.API.DeleteInstagramAccount(Account.id).toPromise();
 
             this.Store.remove(Account.id);
         }
