@@ -39,6 +39,11 @@ export class APIService
         return this.http.get('/api/instagram/accounts');
     }
 
+    public AddInstagramAccount(Login: string, Password: string): Observable<Object>
+    {
+        return this.http.post('/api/instagram/account', { login: Login, password: Password } );
+    }
+
     public DeleteInstagramAccount(ID: number): Observable<Object>
     {
         return this.http.request('delete', '/api/instagram/account', { body: { accountid: ID }} );

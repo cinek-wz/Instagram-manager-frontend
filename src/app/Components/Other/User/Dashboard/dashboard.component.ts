@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+    public NewLogin: string;
+    public NewPassword: string;
+    
     constructor(
         private Router: Router,
         public AccountQuery: AccountQuery, 

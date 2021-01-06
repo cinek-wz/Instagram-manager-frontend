@@ -21,24 +21,6 @@ export class AccountService
         this.Store.setActive(AccountID);
     }
 
-    async GetAccounts()
-    {
-        if (!this.AccountQuery.getHasCache())
-        {
-            try
-            {
-                let Response: any = await this.API.GetInstagramAccounts().toPromise();
-
-                let Accounts = Response.data;
-                this.Store.set(Accounts);
-            }
-            catch (Error)
-            {
-                console.error(Error);
-            }
-        }
-    }
-
     async GetTopPhotos()
     {
         let Account = this.AccountQuery.getActive();
@@ -151,6 +133,24 @@ export class AccountService
         }
     }
 
+    async GetAccounts()
+    {
+        if (!this.AccountQuery.getHasCache())
+        {
+            try
+            {
+                let Response: any = await this.API.GetInstagramAccounts().toPromise();
+
+                let Accounts = Response.data;
+                this.Store.set(Accounts);
+            }
+            catch (Error)
+            {
+                console.error(Error);
+            }
+        }
+    }
+
     async ModifyAccount(Account: InstagramAccount)
     {
         try
@@ -174,6 +174,21 @@ export class AccountService
             await this.API.DeleteInstagramAccount(Account.id).toPromise();
 
             this.Store.remove(Account.id);
+        }
+        catch (Error)
+        {
+            console.error(Error);
+        }
+    }
+
+    async AddAccount(Login: string, Password: string)
+    {
+        try
+        {
+            await this.API.AddInstagramAccount(Login, Password).toPromise();
+
+            this.Store.setHasCache(false);
+            await this.GetAccounts();
         }
         catch (Error)
         {

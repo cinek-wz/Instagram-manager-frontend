@@ -56,7 +56,9 @@
             "dailygain": "Dziennie nowych obserwujących",
             "currentfollowers": "Obecna liczba obserwujących",
             "statusaccount": "Status konta",
-            "deleteaccount": "Usuń konto"
+            "deleteaccount": "Usuń konto",
+
+            "closebutton": "Zamknij"
         },
         "account":
         {
